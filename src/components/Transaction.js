@@ -1,17 +1,14 @@
 import React from "react";
-import Transaction from "./Transaction";
 
-function TransactionsList(props) {
+function Transaction({ transaction }) {
   return (
-    <div>
-      <h2>Transactions List</h2>
-      <ul>
-        {props.transactions.map((transaction, index) => (
-          <Transaction transaction={transaction} />
-        ))}
-      </ul>
-    </div>
+    <tr>
+      <td>{transaction.date}</td>
+      <td>{transaction.description}</td>
+      <td>{transaction.category}</td>
+      <td>{transaction.amount}</td>
+    </tr>
   );
 }
 
-export default TransactionsList;
+export default Transaction;

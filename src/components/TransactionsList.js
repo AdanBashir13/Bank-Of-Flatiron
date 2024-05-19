@@ -1,35 +1,20 @@
 import React from "react";
 import Transaction from "./Transaction";
 
-function TransactionsList(props) {
+function TransactionsList({ transactions, searchTerm }) {
+  const filteredTransactions = transactions.filter(transaction =>
+    transaction.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <table className="ui celled striped padded table">
-      <tbody>
-        <tr>
-          <th>
-            <h3 className="ui center aligned header">Date</h3>
-          </th>
-          <th>
-            <h3 className="ui center aligned header">Description</h3>
-          </th>
-          <th>
-            <h3 className="ui center aligned header">Category</h3>
-          </th>
-          <th>
-            <h3 className="ui center aligned header">Amount</h3>
-          </th>
-        </tr>
-        {props.transactions.map((transaction, index) => (
-          <Transaction
-            key={index}
-            date={transaction.date}
-            description={transaction.description}
-            category={transaction.category}
-            amount={transaction.amount}
-          />
+    <div>
+      <h2>Transactions List</h2>
+      <ul>
+        {filteredTransactions.map((transaction, index) => (
+          <Transaction key={index} transaction={transaction} />
         ))}
-      </tbody>
-    </table>
+      </ul>
+    </div>
   );
 }
 

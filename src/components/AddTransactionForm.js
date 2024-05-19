@@ -19,7 +19,7 @@ function AddTransactionForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.onAddTransaction(formData);
+    props.onAddTransaction(formData); // Ensure the transaction data is passed correctly
     setFormData({
       date: "",
       description: "",

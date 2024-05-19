@@ -4,16 +4,26 @@ import AddTransactionForm from "./AddTransactionForm";
 
 function AccountContainer() {
   const [transactions, setTransactions] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   function addTransaction(transaction) {
-    transactions.push(transaction); // Modifies the original array
-    setTransactions(transactions); // Update the state with the modified array
+    setTransactions([...transactions, transaction]);
+  }
+
+  function handleSearchChange(event) {
+    setSearchTerm(event.target.value);
   }
 
   return (
     <div>
       <AddTransactionForm onAddTransaction={addTransaction} />
-      <TransactionsList transactions={transactions} />
+      <input
+        type="text"
+        placeholder="Search transactions..."
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+      <TransactionsList transactions={transactions} searchTerm={searchTerm} />
     </div>
   );
 }
